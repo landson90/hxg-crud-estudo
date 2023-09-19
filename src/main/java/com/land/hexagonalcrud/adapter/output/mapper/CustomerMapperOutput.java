@@ -7,6 +7,8 @@ import com.land.hexagonalcrud.application.core.domain.CustomerDomain;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.List;
+
 @Mapper( componentModel = "spring")
 public interface CustomerMapperOutput {
 
@@ -19,4 +21,8 @@ public interface CustomerMapperOutput {
     CustomerDomain toCustomer(CustomerEntity customerEntity);
 
     CustomerResponse toCustomerResponse(CustomerDomain domain);
+
+    List<CustomerDomain> toListCostomerEntity(List<CustomerEntity> customerEntityList);
+
+    List<CustomerResponse> toListCostomerDomain(List<CustomerDomain> customerDomains);
 }
