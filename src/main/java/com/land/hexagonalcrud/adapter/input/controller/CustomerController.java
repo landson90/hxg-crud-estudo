@@ -5,6 +5,11 @@ import com.land.hexagonalcrud.adapter.input.request.CustomerRequest;
 import com.land.hexagonalcrud.adapter.input.response.CustomerResponse;
 import com.land.hexagonalcrud.adapter.output.mapper.CustomerMapperOutput;
 import com.land.hexagonalcrud.application.ports.input.InsertCustomerInputPort;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/clientes")
-public class CustomerController {
+public class CustomerController implements CustomerControllerSwagger{
 
 
     private final InsertCustomerInputPort insertCustomerInputPort;
@@ -25,7 +30,6 @@ public class CustomerController {
         this.insertCustomerInputPort = insertCustomerInputPort;
         this.mapper = mapper;
     }
-
     @PostMapping
     public ResponseEntity<CustomerResponse> save(@RequestBody CustomerRequest request) {
         var domain = mapper.toCustomerDomain(request);
